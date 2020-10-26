@@ -33,13 +33,11 @@ void process_subsets_bitwise(int arr[], int size){
         loop(j,0,size){
             
             if((i & (1 << j)) != 0){
-                cout << arr[j] << " ";
+                cout << arr[j] << " ";        // Add element to current subset
             }    
         }
-        best_sum = max(sum,best_sum);
         cout << "\n";
     }
-    cout << best_sum << "\n";
 }
 
 int main(){

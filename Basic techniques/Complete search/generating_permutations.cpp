@@ -2,7 +2,26 @@
 
 using namespace std;
 
-void generate_permutations(int arr[], int n){
+void permutations_recursion(int arr[], int n, vector<int> permutations, vector<bool> chosen){
+    if(permutations.size() == n){
+        for(auto x:permutations){
+            cout << x << " ";
+        }
+        cout << "\n";
+    }
+    else{
+        for(int i = 0; i < n; i++){
+            if(chosen[i]) continue;
+            chosen[i] = true;
+            permutations.push_back(arr[i]);
+            permutations_recursion(arr,n,permutations,chosen);
+            chosen[i] = false;
+            permutations.pop_back();
+        }
+    }
+}
+
+void permutations_stl(int arr[], int n){
     sort(arr,arr+n);
 
     do{
@@ -21,7 +40,12 @@ int main(){
     for(int i = 0; i < n; i++){
         cin >> arr[i];
     }
+    
+    vector<int> permutations;
+    vector<bool> chosen(n,false);
 
-    generate_permutations(arr,n);
+    permutations_recursion(arr,n,permutations,chosen);
+
+   permutations_stl(arr,n);
     return 0;
 }

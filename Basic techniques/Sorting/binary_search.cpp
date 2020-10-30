@@ -9,7 +9,7 @@ void binary_search_conventional(int arr[], int size, int element){
     int start = 0, end = size - 1;
 
     while(start <= end){
-        int mid = (start + end) / 2;
+        int mid = start + (end - start) / 2;
 
         if(arr[mid] == element){
             cout << "Element found\n";

@@ -2,6 +2,27 @@
 #include <bits/stdc++.h> 
 using namespace std; 
 
+bool checkUpValidity(){
+	// Check whether upward DFS can be performed or not
+	return true;
+}
+
+bool checkDownValidity(){
+	// Check whether downward DFS can be performed or not
+	return true;
+}
+
+bool checkLeftValidity(){
+	// Check whether left DFS can be performed or not
+	return true;
+}
+
+bool checkRightValidity(){
+	// Check whether right DFS can be performed or not
+	return true;
+}
+
+
 // Function for dfs. 
 // i, j ==> Current cell indexes 
 // vis ==> To mark visited cells 
@@ -11,7 +32,8 @@ using namespace std;
 void dfs(int i, int j, vector<vector<int> >& grid, 
 		vector<vector<bool> >& vis, int& ans, 
 		int z, int z_count) 
-{ 
+{
+    static int k = 1; 
 	int n = grid.size(), m = grid[0].size(); 
 
 	// Mark the block as visited 
@@ -33,21 +55,39 @@ void dfs(int i, int j, vector<vector<int> >& grid,
 	} 
 
 	// Up 
-	if (i >= 1 && !vis[i - 1][j] && grid[i - 1][j] != -1) 
-		dfs(i - 1, j, grid, vis, ans, z, z_count); 
+	if (i >= 1 && !vis[i - 1][j] && grid[i - 1][j] != -1){
+        k = k + 1;
+        if(k%1000000000 == 0){ 
+        cout << "Processing call" << k << "\n";
+        }
+    	dfs(i - 1, j, grid, vis, ans, z, z_count); 
+    }
 
 	// Down 
-	if (i < n - 1 && !vis[i + 1][j] && grid[i + 1][j] != -1) 
-		dfs(i + 1, j, grid, vis, ans, z, z_count); 
-
+	if (i < n - 1 && !vis[i + 1][j] && grid[i + 1][j] != -1){
+		k = k + 1;
+        if(k%1000000000 == 0){ 
+        cout << "Processing call" << k << "\n";
+        }
+        dfs(i + 1, j, grid, vis, ans, z, z_count); 
+    }
 	// Left 
-	if (j >= 1 && !vis[i][j - 1] && grid[i][j - 1] != -1) 
-		dfs(i, j - 1, grid, vis, ans, z, z_count); 
+	if (j >= 1 && !vis[i][j - 1] && grid[i][j - 1] != -1){
+		k = k + 1;
+        if(k%1000000000 == 0){ 
+        cout << "Processing call" << k << "\n";
+        }
+        dfs(i, j - 1, grid, vis, ans, z, z_count);
+    }
 
 	// Right 
-	if (j < m - 1 && !vis[i][j + 1] && grid[i][j + 1] != -1) 
-		dfs(i, j + 1, grid, vis, ans, z, z_count); 
-
+	if (j < m - 1 && !vis[i][j + 1] && grid[i][j + 1] != -1) {
+		k = k + 1;
+        if(k%1000000000 == 0){ 
+        cout << "Processing call" << k << "\n";
+        }
+        dfs(i, j + 1, grid, vis, ans, z, z_count); 
+    }
 	// Unmark the block (unvisited) 
 	vis[i][j] = 0; 
 } 
@@ -80,9 +120,13 @@ int uniquePaths(vector<vector<int> >& grid)
 // Driver code 
 int main() 
 { 
-	vector<vector<int> > grid{ { 1, 0, 0, 0 }, 
-							{ 0, 0, 0, 0 }, 
-							{ 0, 0, 2, -1 } }; 
+	vector<vector<int> > grid{ { 1, 0, 0, 0, 0, 0, 0 }, 
+							{ 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0 }, 
+                            { 0, 0, 0, 0, 0, 0, 0 }, 
+                            { 0, 0, 0, 0, 0, 0, 0 }, 
+                            { 0, 0, 0, 0, 0, 0, 0 }, 
+							{ 0, 0, 0, 0, 0, 0, 2 }}; 
 
 	cout << uniquePaths(grid); 
 	return 0; 

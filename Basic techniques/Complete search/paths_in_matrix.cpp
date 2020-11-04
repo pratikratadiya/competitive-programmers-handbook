@@ -2,22 +2,22 @@
 #include <bits/stdc++.h> 
 using namespace std; 
 
-bool checkUpValidity(){
+bool checkUpValidity(grid,vis,i,j){
 	// Check whether upward DFS can be performed or not
 	return true;
 }
 
-bool checkDownValidity(){
-	// Check whether downward DFS can be performed or not
+bool checkDownValidity(grid,vis,i,j){
+	// Check whether downward DFS can be performed or not	
 	return true;
 }
 
-bool checkLeftValidity(){
+bool checkLeftValidity(grid,vis,i,j){
 	// Check whether left DFS can be performed or not
 	return true;
 }
 
-bool checkRightValidity(){
+bool checkRightValidity(grid,vis,i,j){
 	// Check whether right DFS can be performed or not
 	return true;
 }
